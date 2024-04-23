@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   File? _selectedImage;
   String? originalFileSize;
   String? compressedFileSize;
-  // img.Image? compressedImage;
+  img.Image? compressedImage;
 
   bool compressing = false;
 
@@ -83,57 +83,57 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  // Future<void> _compressImage70() async {
-  //   if (_selectedImage == null) return;
-  //   setState(() {
-  //     compressing = true; // Set compressing to true when compression starts
-  //   });
+  Future<void> _compressImage70() async {
+    if (_selectedImage == null) return;
+    setState(() {
+      compressing = true; // Set compressing to true when compression starts
+    });
 
-  //   final originalBytes = await _selectedImage!.readAsBytes();
-  //   final List<int> compressedBytes =
-  //       await FlutterImageCompress.compressWithList(
-  //     originalBytes,
-  //     minHeight: 1920,
-  //     minWidth: 1080,
-  //     quality: 70,
-  //     rotate: 0,
-  //   );
+    final originalBytes = await _selectedImage!.readAsBytes();
+    final List<int> compressedBytes =
+        await FlutterImageCompress.compressWithList(
+      originalBytes,
+      minHeight: 1920,
+      minWidth: 1080,
+      quality: 70,
+      rotate: 0,
+    );
 
-  //   final compressedImage =
-  //       img.decodeImage(Uint8List.fromList(compressedBytes));
+    final compressedImage =
+        img.decodeImage(Uint8List.fromList(compressedBytes));
 
-  //   setState(() {
-  //     this.compressedImage = compressedImage;
-  //     compressedFileSize = getFileSizeBytes(compressedBytes.length);
-  //     compressing = false;
-  //   });
-  // }
+    setState(() {
+      this.compressedImage = compressedImage;
+      compressedFileSize = getFileSizeBytes(compressedBytes.length);
+      compressing = false;
+    });
+  }
 
-  // Future<void> _compressImage60() async {
-  //   if (_selectedImage == null) return;
-  //   setState(() {
-  //     compressing = true; // Set compressing to true when compression starts
-  //   });
+  Future<void> _compressImage60() async {
+    if (_selectedImage == null) return;
+    setState(() {
+      compressing = true; // Set compressing to true when compression starts
+    });
 
-  //   final originalBytes = await _selectedImage!.readAsBytes();
-  //   final List<int> compressedBytes =
-  //       await FlutterImageCompress.compressWithList(
-  //     originalBytes,
-  //     minHeight: 1920,
-  //     minWidth: 1080,
-  //     quality: 60,
-  //     rotate: 0,
-  //   );
+    final originalBytes = await _selectedImage!.readAsBytes();
+    final List<int> compressedBytes =
+        await FlutterImageCompress.compressWithList(
+      originalBytes,
+      minHeight: 1920,
+      minWidth: 1080,
+      quality: 60,
+      rotate: 0,
+    );
 
-  //   final compressedImage =
-  //       img.decodeImage(Uint8List.fromList(compressedBytes));
+    final compressedImage =
+        img.decodeImage(Uint8List.fromList(compressedBytes));
 
-  //   setState(() {
-  //     this.compressedImage = compressedImage;
-  //     compressedFileSize = getFileSizeBytes(compressedBytes.length);
-  //     compressing = false;
-  //   });
-  // }
+    setState(() {
+      this.compressedImage = compressedImage;
+      compressedFileSize = getFileSizeBytes(compressedBytes.length);
+      compressing = false;
+    });
+  }
 
   String getFileSize(File file) {
     int fileSizeInBytes = file.lengthSync();
@@ -153,21 +153,21 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  // Future<void> _saveCompressedImage() async {
-  //   if (compressedImage != null) {
-  //     final directory = await getTemporaryDirectory();
-  //     final filePath = '${directory.path}/compressed_image.jpg';
-  //     await File(filePath).writeAsBytes(img.encodeJpg(compressedImage!));
+  Future<void> _saveCompressedImage() async {
+    if (compressedImage != null) {
+      final directory = await getTemporaryDirectory();
+      final filePath = '${directory.path}/compressed_image.jpg';
+      await File(filePath).writeAsBytes(img.encodeJpg(compressedImage!));
 
-  //     // Save to gallery using image_gallery_saver
-  //     await ImageGallerySaver.saveFile(filePath);
+      // Save to gallery using image_gallery_saver
+      await ImageGallerySaver.saveFile(filePath);
 
-  //     // Display a message to indicate successful saving
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(content: Text('Image saved to gallery')),
-  //     );
-  //   }
-  // }
+      // Display a message to indicate successful saving
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Image saved to gallery')),
+      );
+    }
+  }
 
   Widget _buildProgressIndicator() {
     return Visibility(
@@ -182,7 +182,8 @@ class _MyHomePageState extends State<MyHomePage> {
     var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Image Compressor App'),
+        centerTitle: true,
+        title: Text('Quick Image Compressor'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -191,16 +192,18 @@ class _MyHomePageState extends State<MyHomePage> {
             _selectedImage != null
                 ? Container(
                     decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.black),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(width: 1, color: Colors.grey),
                     ),
-                    height: 200,
+                    height: 150,
                     width: double.infinity,
                     child: Image.file(_selectedImage!))
                 : Container(
                     decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.black),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(width: 1, color: Colors.grey),
                     ),
-                    height: 250,
+                    height: 200,
                     child: Center(child: Text("Upload an Image")),
                   ),
             SizedBox(height: 5),
@@ -249,7 +252,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   InkWell(
-                    // onTap: _compressImage70,
+                    onTap: _compressImage70,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
@@ -269,7 +272,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   InkWell(
-                    // onTap: _compressImage60,
+                    onTap: _compressImage60,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
@@ -291,12 +294,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 10),
             Column(
               children: [
                 myimageController.mycompressedImage != null
                     ? Container(
-                        height: 250,
+                        height: 230,
                         child: Image.memory(
                           Uint8List.fromList(
                             img.encodeJpg(myimageController.mycompressedImage!),
@@ -307,16 +310,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         decoration: BoxDecoration(
                           border: Border.all(width: 1, color: Colors.black),
                         ),
-                        height: 250,
+                        height: 230,
                         child: Center(child: Text("Upload an Image")),
                       ),
                 SizedBox(height: 5),
-                Text('Compressed File Size: $compressedFileSize'),
+                compressedFileSize == null
+                    ? Text("Compressed File Size: 0.00 KB")
+                    : Text('Compressed File Size: $compressedFileSize'),
                 SizedBox(height: 5),
-                // ElevatedButton(
-                //   onPressed: _saveCompressedImage,
-                //   child: Text('Save to Gallery'),
-                // ),
+                ElevatedButton(
+                  onPressed: _saveCompressedImage,
+                  child: Text('Save to Gallery'),
+                ),
               ],
             ),
           ],

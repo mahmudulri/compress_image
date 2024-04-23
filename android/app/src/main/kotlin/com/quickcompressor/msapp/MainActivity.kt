@@ -1,4 +1,4 @@
-package com.example.compressimage
+package com.quickcompressor.msapp
 
 import io.flutter.embedding.android.FlutterActivity
 
