@@ -181,6 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text('Quick Image Compressor'),
