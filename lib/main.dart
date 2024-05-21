@@ -184,7 +184,12 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Quick Image Compressor'),
+        title: Text(
+          'Quick Image Compressor',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -222,12 +227,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   InkWell(
                     onTap: _pickImage,
                     child: Container(
-                      decoration: BoxDecoration(color: Colors.black),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          width: 1,
+                          color: Colors.grey,
+                        ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(
-                          Icons.upload,
-                          color: Colors.white,
+                        child: Image.asset(
+                          "assets/icons/upload.png",
+                          height: 30,
                         ),
                       ),
                     ),
