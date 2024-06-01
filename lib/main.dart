@@ -254,7 +254,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: EdgeInsets.all(8.0),
                         child: Center(
                           child: Text(
-                            "80%",
+                            "60%",
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -294,7 +294,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: EdgeInsets.all(8.0),
                         child: Center(
                           child: Text(
-                            "60%",
+                            "80%",
                             style: TextStyle(
                               color: Colors.white,
                             ),
