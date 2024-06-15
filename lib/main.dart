@@ -156,6 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _saveCompressedImage() async {
     if (compressedImage != null) {
       final directory = await getTemporaryDirectory();
+
       final filePath = '${directory.path}/compressed_image.jpg';
       await File(filePath).writeAsBytes(img.encodeJpg(compressedImage!));
 
